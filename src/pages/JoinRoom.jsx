@@ -56,7 +56,7 @@ function JoinRoom() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId, roomCode, isAdmin: data.isAdmin }),
       });
-
+      
       // Save to sessionStorage
       sessionStorage.setItem("userId", userId);
       sessionStorage.setItem("roomCode", roomCode);
