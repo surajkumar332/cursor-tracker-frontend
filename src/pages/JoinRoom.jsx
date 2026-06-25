@@ -22,7 +22,7 @@ function JoinRoom() {
 
     try {
       // Try to join existing room
-      const joinRes = await fetch("http://localhost:5000/api/rooms/join", {
+      const joinRes = await fetch(`${import.meta.env.VITE_API_URL}/api/rooms/join`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ roomCode, userId }),
@@ -32,7 +32,7 @@ function JoinRoom() {
 
       // If room not found and isAdmin, create it
       if (!joinRes.ok && isAdmin) {
-        const createRes = await fetch("http://localhost:5000/api/rooms/create", {
+        const createRes = await fetch(`${import.meta.env.VITE_API_URL}/api/rooms/create`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ roomCode, adminId: userId }),
@@ -51,7 +51,7 @@ function JoinRoom() {
       }
 
       // Register user
-      await fetch("http://localhost:5000/api/users/register", {
+      await fetch(`${import.meta.env.VITE_API_URL}/api/users/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId, roomCode, isAdmin: data.isAdmin }),
