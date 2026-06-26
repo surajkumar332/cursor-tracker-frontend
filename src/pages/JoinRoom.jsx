@@ -56,16 +56,16 @@ function JoinRoom() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId, roomCode, isAdmin: data.isAdmin }),
       });
-      
+
       // Save to sessionStorage
       sessionStorage.setItem("userId", userId);
       sessionStorage.setItem("roomCode", roomCode);
-      sessionStorage.setItem("isAdmin", data.isAdmin ? "true" : "false");
+      sessionStorage.setItem("isAdmin", isAdmin ? "true" : "false");
 
-      if (!data.isAdmin) {
-        navigate(`/room/${roomCode}`);
-      } else {
+      if (isAdmin) {
         navigate(`/admin/${roomCode}`);
+      } else {
+        navigate(`/room/${roomCode}`);
       }
     } catch (err) {
       setError("Server error. Make sure backend is running.");
