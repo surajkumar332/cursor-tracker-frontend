@@ -62,10 +62,10 @@ function JoinRoom() {
       sessionStorage.setItem("roomCode", roomCode);
       sessionStorage.setItem("isAdmin", data.isAdmin ? "true" : "false");
 
-      if (data.isAdmin) {
-        navigate(`/admin/${roomCode}`);
-      } else {
+      if (!data.isAdmin) {
         navigate(`/room/${roomCode}`);
+      } else {
+        navigate(`/admin/${roomCode}`);
       }
     } catch (err) {
       setError("Server error. Make sure backend is running.");
